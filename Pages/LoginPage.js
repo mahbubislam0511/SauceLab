@@ -1,3 +1,5 @@
+// @ts-check
+
 class LoginPage {
     constructor(page) {
       this.page = page;
@@ -8,13 +10,17 @@ class LoginPage {
     }
   
     async goToLoginPage() {
-      await this.page.goto('https://www.saucedemo.com/', { timeout: 10000 });
+      await this.page.goto('https://www.saucedemo.com/');
+      await this.page.waitForTimeout(2000);
     }
   
     async loginToApplication(username, password) {
-      await this.usernameInput.fill(username, { timeout: 30000 });
+      await this.usernameInput.fill(username);
+      await this.page.waitForTimeout(2000);
       await this.passwordInput.fill(password);
+      await this.page.waitForTimeout(2000);
       await this.loginButton.click();
+      await this.page.waitForTimeout(3000);
     }
   
     async getErrorMessage() {
